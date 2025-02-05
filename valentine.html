@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Will You Be My Valentine?</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f8ff;
+      margin: 0;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2em;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .button {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      cursor: pointer;
+      margin: 10px;
+      border: none;
+      border-radius: 8px;
+    }
+
+    #yes {
+      background-color: green;
+      color: white;
+    }
+
+    #no {
+      background-color: red;
+      color: white;
+    }
+
+    .hearts {
+      font-size: 2em;
+      color: red;
+      display: none;
+    }
+
+    .confession {
+      font-size: 1.5em;
+      color: red;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>Will you be my Valentine?</h1>
+
+  <div class="buttons">
+    <button id="yes" class="button">Yes</button>
+    <button id="no" class="button">No</button>
+  </div>
+
+  <div id="confession" class="confession"></div>
+  <div id="hearts" class="hearts">❤️❤️❤️</div>
+
+  <script>
+    const yesButton = document.getElementById("yes");
+    const noButton = document.getElementById("no");
+    const confession = document.getElementById("confession");
+    const hearts = document.getElementById("hearts");
+
+    yesButton.addEventListener("click", () => {
+      confession.innerHTML = "YAYYY! ❤️";
+      hearts.style.display = "block"; // Show hearts
+    });
+
+    noButton.addEventListener("click", () => {
+      let counter = 0;
+
+      // Loop to change the text and make the "yes" button bigger
+      const interval = setInterval(() => {
+        if (counter === 0) {
+          noButton.innerHTML = "Please";
+        } else if (counter === 1) {
+          noButton.innerHTML = "Nooo I like youuu";
+        } else if (counter === 2) {
+          noButton.innerHTML = "Plssplspls";
+        }
+
+        // Increase the size of the "yes" button
+        yesButton.style.transform = `scale(${1 + counter * 0.2})`;
+
+        counter++;
+
+        // Stop when the "yes" button is big enough
+        if (counter > 5) {
+          clearInterval(interval);
+          noButton.style.display = "none"; // Hide "no" button
+        }
+      }, 1000); // Change text every second
+    });
+  </script>
+
+</body>
+</html>
